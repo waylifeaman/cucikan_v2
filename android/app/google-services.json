@@ -29,6 +29,13 @@
             {
               "client_id": "708212193698-vghsn62f4t8nch4ldn42f0k8pn1246cg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "708212193698-gl2a8mrcaj2m5l684e6ojnilmprr9i8e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cucikanV2"
+              }
             }
           ]
         }

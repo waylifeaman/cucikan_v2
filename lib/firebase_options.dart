@@ -57,26 +57,22 @@ class DefaultFirebaseOptions {
     projectId: 'cucikan-v2',
     storageBucket: 'cucikan-v2.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA6L8ig84-ZhqjxFNGQGapiXLZVPhwqND8',
     appId: '1:708212193698:ios:3774de72938b2f2b94dafb',
     messagingSenderId: '708212193698',
     projectId: 'cucikan-v2',
     storageBucket: 'cucikan-v2.firebasestorage.app',
-    iosClientId:
-        '708212193698-gl2a8mrcaj2m5l684e6ojnilmprr9i8e.apps.googleusercontent.com',
+    iosClientId: '708212193698-gl2a8mrcaj2m5l684e6ojnilmprr9i8e.apps.googleusercontent.com',
     iosBundleId: 'com.example.cucikanV2',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyA6L8ig84-ZhqjxFNGQGapiXLZVPhwqND8',
     appId: '1:708212193698:ios:3774de72938b2f2b94dafb',
     messagingSenderId: '708212193698',
     projectId: 'cucikan-v2',
     storageBucket: 'cucikan-v2.firebasestorage.app',
-    iosClientId:
-        '708212193698-gl2a8mrcaj2m5l684e6ojnilmprr9i8e.apps.googleusercontent.com',
+    iosClientId: '708212193698-gl2a8mrcaj2m5l684e6ojnilmprr9i8e.apps.googleusercontent.com',
     iosBundleId: 'com.example.cucikanV2',
   );
 
