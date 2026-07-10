@@ -5,6 +5,7 @@ class UserModel {
   final String name;
   final String email;
   final String phone;
+  final String defaultOutletId;
   final String? photoUrl;
   final bool isActive;
   final Timestamp? createdAt;
@@ -16,6 +17,7 @@ class UserModel {
     required this.name,
     required this.email,
     required this.phone,
+    required this.defaultOutletId,
     this.photoUrl,
     required this.isActive,
     this.createdAt,
@@ -29,6 +31,7 @@ class UserModel {
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       phone: map['phone'] ?? '',
+      defaultOutletId: map['default_outlet_id'] ?? '',
       photoUrl: map['photo_url'],
       isActive: map['is_active'] ?? true,
       createdAt: map['created_at'],
@@ -43,6 +46,7 @@ class UserModel {
       'name': name,
       'email': email,
       'phone': phone,
+      'default_outlet_id': defaultOutletId,
       'photo_url': photoUrl,
       'is_active': isActive,
       'created_at': createdAt,
@@ -67,6 +71,7 @@ class UserModel {
       name: name ?? this.name,
       email: email ?? this.email,
       phone: phone ?? this.phone,
+      defaultOutletId: defaultOutletId ?? this.defaultOutletId,
       photoUrl: photoUrl ?? this.photoUrl,
       isActive: isActive ?? this.isActive,
       createdAt: createdAt ?? this.createdAt,

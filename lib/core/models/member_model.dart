@@ -5,12 +5,14 @@ class MemberModel {
   final String role;
   final bool isActive;
   final Timestamp joinedAt;
+  final String? invitedBy;
 
   const MemberModel({
     required this.uid,
     required this.role,
     required this.isActive,
     required this.joinedAt,
+    required this.invitedBy,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +21,7 @@ class MemberModel {
       'role': role,
       'is_active': isActive,
       'joined_at': joinedAt,
+      'invited_by': invitedBy,
     };
   }
 
@@ -28,6 +31,7 @@ class MemberModel {
       role: map['role'] ?? 'staff',
       isActive: map['is_active'] ?? true,
       joinedAt: map['joined_at'] ?? Timestamp.now(),
+      invitedBy: map['invited_by'],
     );
   }
 }

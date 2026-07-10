@@ -2,23 +2,25 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class OutletModel {
   final String id;
+  final String ownerUid;
   final String name;
   final String address;
   final String phone;
   final String? logoUrl;
   final String subscription;
-  final bool status;
+  final bool isActive;
   final Timestamp? createdAt;
   final Timestamp? updatedAt;
 
   const OutletModel({
     required this.id,
+    required this.ownerUid,
     required this.name,
     required this.address,
     required this.phone,
     this.logoUrl,
     required this.subscription,
-    required this.status,
+    required this.isActive,
     this.createdAt,
     this.updatedAt,
   });
@@ -26,12 +28,13 @@ class OutletModel {
   factory OutletModel.fromMap(Map<String, dynamic> map) {
     return OutletModel(
       id: map['id'] ?? '',
+      ownerUid: map['owner_uid'] ?? '',
       name: map['name'] ?? '',
       address: map['address'] ?? '',
       phone: map['phone'] ?? '',
       logoUrl: map['logo_url'],
       subscription: map['subscription'] ?? 'free',
-      status: map['status'] ?? true,
+      isActive: map['isActive'] ?? true,
       createdAt: map['created_at'] as Timestamp?,
       updatedAt: map['updated_at'] as Timestamp?,
     );
@@ -40,12 +43,13 @@ class OutletModel {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'owner_id': ownerUid,
       'name': name,
       'address': address,
       'phone': phone,
       'logo_url': logoUrl,
       'subscription': subscription,
-      'status': status,
+      'isActive': isActive,
       'created_at': createdAt,
       'updated_at': updatedAt,
     };
@@ -53,23 +57,25 @@ class OutletModel {
 
   OutletModel copyWith({
     String? id,
+    String? ownerUid,
     String? name,
     String? address,
     String? phone,
     String? logoUrl,
     String? subscription,
-    bool? status,
+    bool? isActive,
     Timestamp? createdAt,
     Timestamp? updatedAt,
   }) {
     return OutletModel(
       id: id ?? this.id,
+      ownerUid: ownerUid ?? this.ownerUid,
       name: name ?? this.name,
       address: address ?? this.address,
       phone: phone ?? this.phone,
       logoUrl: logoUrl ?? this.logoUrl,
       subscription: subscription ?? this.subscription,
-      status: status ?? this.status,
+      isActive: isActive ?? this.isActive,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
