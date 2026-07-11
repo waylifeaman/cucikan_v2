@@ -48,22 +48,20 @@ class RegisterController extends ChangeNotifier {
   // ============================
   // Toggle Password
   // ============================
-
-  void togglePassword() {
+  void togglePasswordVisibility() {
     _obscurePassword = !_obscurePassword;
     notifyListeners();
   }
 
-  void toggleConfirmPassword() {
+  void toggleConfirmPasswordVisibility() {
     _obscureConfirmPassword = !_obscureConfirmPassword;
     notifyListeners();
   }
-
   // ============================
   // Register
   // ============================
 
-  Future<void> register() async {
+  Future<void> register(BuildContext context) async {
     if (!formKey.currentState!.validate()) {
       return;
     }
@@ -79,6 +77,20 @@ class RegisterController extends ChangeNotifier {
         email: emailController.text.trim(),
         password: passwordController.text,
       );
+
+      if (!context.mounted) return;
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Registrasi berhasil")));
+
+      Navigator.pop(context);
+    } catch (e) {
+      if (!context.mounted) return;
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
     } finally {
       _isLoading = false;
       notifyListeners();

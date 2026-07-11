@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_radius.dart';
+import '../../../core/theme/app_text_style.dart';
+import '../../../core/theme/app_spacing.dart';
 
 class AuthTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -29,14 +33,11 @@ class AuthTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 18),
+      padding: const EdgeInsets.only(bottom: AppSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-          ),
+          Text(label, style: AppTextStyles.body),
 
           const SizedBox(height: 8),
 
@@ -46,10 +47,11 @@ class AuthTextField extends StatelessWidget {
             keyboardType: keyboardType,
             validator: validator,
             textInputAction: textInputAction,
+            cursorColor: AppColors.primary,
 
             decoration: InputDecoration(
               hintText: hint,
-
+              hintStyle: AppTextStyles.bodySmall,
               prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
 
               suffixIcon: showToggleObscure
@@ -57,28 +59,29 @@ class AuthTextField extends StatelessWidget {
                       onPressed: onToggleObscure,
                       icon: Icon(
                         obscureText ? Icons.visibility_off : Icons.visibility,
+                        color: AppColors.textSecondary,
                       ),
                     )
                   : null,
 
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppRadius.md),
               ),
 
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppRadius.md),
               ),
 
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppRadius.md),
               ),
 
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppRadius.md),
               ),
 
               focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppRadius.md),
               ),
 
               contentPadding: const EdgeInsets.symmetric(
