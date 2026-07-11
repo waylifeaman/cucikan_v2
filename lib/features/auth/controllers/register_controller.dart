@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 
-class RegisterController extends ChangeNotifier {
-  //==================================================
-  // Constructor
-  //==================================================
+import '../services/register_service.dart';
 
+class RegisterController extends ChangeNotifier {
   RegisterController();
 
-  //==================================================
-  // Text Editing Controller
-  //==================================================
+  final RegisterService _registerService = RegisterService.instance;
 
-  final nameController = TextEditingController();
+  // ============================
+  // Form
+  // ============================
+
+  final formKey = GlobalKey<FormState>();
+
+  // ============================
+  // Text Controllers
+  // ============================
+
+  final ownerNameController = TextEditingController();
 
   final outletNameController = TextEditingController();
 
@@ -23,38 +29,69 @@ class RegisterController extends ChangeNotifier {
 
   final confirmPasswordController = TextEditingController();
 
-  //==================================================
-  // Form Key
-  //==================================================
-
-  final formKey = GlobalKey<FormState>();
-
-  //==================================================
-  // Variables
-  //==================================================
+  // ============================
+  // State
+  // ============================
 
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
 
-  //==================================================
-  // Methods
-  //==================================================
+  bool _obscurePassword = true;
 
-  void setLoading(bool value) {
-    _isLoading = value;
+  bool get obscurePassword => _obscurePassword;
+
+  bool _obscureConfirmPassword = true;
+
+  bool get obscureConfirmPassword => _obscureConfirmPassword;
+
+  // ============================
+  // Toggle Password
+  // ============================
+
+  void togglePassword() {
+    _obscurePassword = !_obscurePassword;
     notifyListeners();
   }
 
-  Future<void> register() async {}
+  void toggleConfirmPassword() {
+    _obscureConfirmPassword = !_obscureConfirmPassword;
+    notifyListeners();
+  }
 
-  //==================================================
+  // ============================
+  // Register
+  // ============================
+
+  Future<void> register() async {
+    if (!formKey.currentState!.validate()) {
+      return;
+    }
+
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      await _registerService.register(
+        ownerName: ownerNameController.text.trim(),
+        outletName: outletNameController.text.trim(),
+        phone: phoneController.text.trim(),
+        email: emailController.text.trim(),
+        password: passwordController.text,
+      );
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  // ============================
   // Dispose
-  //==================================================
+  // ============================
 
   @override
   void dispose() {
-    nameController.dispose();
+    ownerNameController.dispose();
     outletNameController.dispose();
     phoneController.dispose();
     emailController.dispose();
