@@ -24,17 +24,30 @@ class OutletModel {
     this.createdAt,
     this.updatedAt,
   });
-
+  factory OutletModel.empty() {
+    return const OutletModel(
+      id: '',
+      ownerUid: '',
+      name: '',
+      address: '',
+      phone: '',
+      logoUrl: null,
+      subscription: 'free',
+      isActive: true,
+      createdAt: null,
+      updatedAt: null,
+    );
+  }
   factory OutletModel.fromMap(Map<String, dynamic> map) {
     return OutletModel(
       id: map['id'] ?? '',
-      ownerUid: map['owner_uid'] ?? '',
+      ownerUid: map['owner_id'] ?? '',
       name: map['name'] ?? '',
       address: map['address'] ?? '',
       phone: map['phone'] ?? '',
       logoUrl: map['logo_url'],
       subscription: map['subscription'] ?? 'free',
-      isActive: map['isActive'] ?? true,
+      isActive: map['is_active'] ?? true,
       createdAt: map['created_at'] as Timestamp?,
       updatedAt: map['updated_at'] as Timestamp?,
     );
@@ -49,7 +62,7 @@ class OutletModel {
       'phone': phone,
       'logo_url': logoUrl,
       'subscription': subscription,
-      'isActive': isActive,
+      'is_active': isActive,
       'created_at': createdAt,
       'updated_at': updatedAt,
     };

@@ -32,22 +32,29 @@ class _DotLoadingState extends State<DotLoading>
 
     return AnimatedBuilder(
       animation: _controller,
-      builder: (_, __) {
-        final value = _controller.value;
-
+      builder: (context, child) {
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: List.generate(3, (index) {
-            final active = ((value * 3).floor()) % 3 == index;
+            final delay = index * 0.2;
 
-            return AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              width: active ? widget.size + 4 : widget.size,
-              height: active ? widget.size + 4 : widget.size,
-              decoration: BoxDecoration(
-                color: active ? color : color.withOpacity(0.25),
-                shape: BoxShape.circle,
+            double scale = (1 - ((_controller.value - delay).abs() * 3)).clamp(
+              0.6,
+              1.2,
+            );
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Transform.scale(
+                scale: scale,
+                child: Container(
+                  width: widget.size,
+                  height: widget.size,
+                  decoration: BoxDecoration(
+                    color: color,
+                    shape: BoxShape.circle,
+                  ),
+                ),
               ),
             );
           }),

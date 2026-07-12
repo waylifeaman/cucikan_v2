@@ -67,15 +67,17 @@ class _SplashPageState extends State<SplashPage>
     );
 
     _loadingOpacity = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.65, 0.85)),
+      CurvedAnimation(parent: _controller, curve: const Interval(0.35, 0.55)),
     );
 
     _controller.forward();
 
-    Future.delayed(const Duration(seconds: 3), () {
-      if (!mounted) return;
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        if (!mounted) return;
 
-      Navigator.pushReplacementNamed(context, '/welcome');
+        Navigator.pushReplacementNamed(context, '/welcome');
+      }
     });
   }
 
