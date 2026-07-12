@@ -32,6 +32,7 @@ class RegisterService {
         email: email,
         password: password,
       );
+      await _authService.sendEmailVerification();
       final uid = credential.user!.uid;
       final outletId = _uuid.v4();
       //berikut  unutk  mengambil outletmodel
@@ -82,7 +83,11 @@ class RegisterService {
 
       batch.set(memberRef, member.toMap());
       await batch.commit();
-    } catch (e) {
+      await _authService.signOut();
+    } catch (e, stackTrace) {
+      print(e.toString());
+      print(stackTrace.toString());
+
       final firebaseUser = credential?.user;
 
       if (firebaseUser != null) {

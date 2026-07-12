@@ -1,27 +1,38 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/services/auth_service.dart';
 import '../../../core/services/session_service.dart';
 
 class SplashController extends ChangeNotifier {
   SplashController();
 
+  final AuthService _authService = AuthService.instance;
+
   Future<String> checkSession() async {
-    // Delay agar logo terlihat
+    // Splash tampil selama 2 detik
     await Future.delayed(const Duration(seconds: 2));
 
-    final firebaseUser = FirebaseAuth.instance.currentUser;
-
-    if (firebaseUser == null) {
-      return '/login';
+    // Belum login
+    if (!_authService.isLoggedIn) {
+      return '/welcome';
     }
 
+    // Refresh data user
+    await _authService.reloadUser();
+
+    // Belum verifikasi email
+    if (!_authService.isEmailVerified) {
+      return '/verify-email';
+    }
+
+    // Cek outlet terakhir
     final outletId = await SessionService.getOutletId();
 
     if (outletId == null) {
       return '/login';
     }
 
+    // Semua aman
     return '/dashboard';
   }
 }

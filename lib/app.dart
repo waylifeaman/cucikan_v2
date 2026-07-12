@@ -5,6 +5,8 @@ import 'features/welcome/pages/welcome_page.dart';
 import 'features/auth/pages/login_page.dart';
 import 'features/auth/pages/register_page.dart';
 import 'features/dashboard/pages/dashboard_page.dart';
+import 'features/auth/pages/verify_email_page.dart';
+import 'features/auth/pages/forgot_password_page.dart';
 
 class CucikanApp extends StatelessWidget {
   const CucikanApp({super.key});
@@ -24,8 +26,8 @@ class CucikanApp extends StatelessWidget {
         '/welcome': (_) => const WelcomePage(),
         '/login': (_) => const LoginPage(),
         '/register': (_) => const RegisterPage(),
-
-        // Tambahkan di sini
+        '/verify-email': (_) => const VerifyEmailPage(),
+        '/forgot-password': (_) => const ForgotPasswordPage(),
         '/dashboard': (_) => const DashboardPage(),
       },
     );

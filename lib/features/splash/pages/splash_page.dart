@@ -5,6 +5,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_text_style.dart';
 import '../../../core/widgets/app_logo.dart';
 import '../../../core/widgets/dot_loading.dart';
+import '../controllers/splash_controller.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -15,8 +16,13 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
+  // Controller Animasi
+  late final AnimationController _animationController;
 
+  // Controller Splash
+  final SplashController _splashController = SplashController();
+
+  // Animasi
   late final Animation<double> _logoOpacity;
   late final Animation<double> _logoScale;
 
@@ -24,66 +30,78 @@ class _SplashPageState extends State<SplashPage>
   late final Animation<Offset> _titleOffset;
 
   late final Animation<double> _subtitleOpacity;
-
   late final Animation<double> _loadingOpacity;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
+    _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 3000),
     );
 
     _logoOpacity = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: _animationController,
         curve: const Interval(0.0, 0.25, curve: Curves.easeOut),
       ),
     );
 
     _logoScale = Tween<double>(begin: 0.7, end: 1).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: _animationController,
         curve: const Interval(0.0, 0.35, curve: Curves.elasticOut),
       ),
     );
 
     _titleOpacity = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.25, 0.55)),
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(0.25, 0.55),
+      ),
     );
 
     _titleOffset = Tween<Offset>(begin: const Offset(0, .4), end: Offset.zero)
         .animate(
           CurvedAnimation(
-            parent: _controller,
+            parent: _animationController,
             curve: const Interval(0.25, 0.55, curve: Curves.easeOut),
           ),
         );
 
     _subtitleOpacity = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.45, 0.70)),
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(0.45, 0.70),
+      ),
     );
 
     _loadingOpacity = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.35, 0.55)),
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(0.35, 0.55),
+      ),
     );
 
-    _controller.forward();
+    _animationController.forward();
 
-    _controller.addStatusListener((status) {
+    _animationController.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
         if (!mounted) return;
 
-        Navigator.pushReplacementNamed(context, '/welcome');
+        final route = await _splashController.checkSession();
+
+        if (!mounted) return;
+
+        Navigator.pushReplacementNamed(context, route);
       }
     });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 

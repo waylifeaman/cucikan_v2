@@ -22,7 +22,15 @@ class LoginService {
       email: email,
       password: password,
     );
+    await credential.user?.reload();
 
+    if (!(credential.user?.emailVerified ?? false)) {
+      await _authService.signOut();
+
+      throw Exception(
+        "Email Anda belum diverifikasi. Silakan cek email dan lakukan verifikasi terlebih dahulu.",
+      );
+    }
     final uid = credential.user!.uid;
 
     final doc = await _firestore.collection('users').doc(uid).get();

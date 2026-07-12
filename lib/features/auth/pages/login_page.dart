@@ -4,7 +4,6 @@ import '../validators/auth_validator.dart';
 import '../widgets/auth_textfield.dart';
 import '../widgets/auth_button.dart';
 import '../controllers/login_controller.dart';
-import 'register_page.dart';
 import '../../../core/widgets/app_logo.dart';
 import '../../../core/theme/app_text_style.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -78,12 +77,12 @@ class _LoginView extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      // nanti kita buat fitur reset password
+                      Navigator.pushNamed(context, '/forgot-password');
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: AppColors.primary,
                     ),
-                    child: const Text("Lupa Password"),
+                    child: const Text("Lupa Password?"),
                   ),
                 ),
 

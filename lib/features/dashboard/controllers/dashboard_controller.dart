@@ -26,12 +26,10 @@ class DashboardController extends ChangeNotifier {
   }
 
   Future<void> logout(BuildContext context) async {
-    await _authService.signOut();
+    await AuthService.instance.signOut();
 
     await SessionService.clear();
 
-    if (!context.mounted) return;
-
-    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, '/welcome', (route) => false);
   }
 }

@@ -19,6 +19,25 @@ class AuthService {
     return _auth.authStateChanges();
   }
 
+  /// Mengirim email verifikasi
+  Future<void> sendEmailVerification() async {
+    final user = _auth.currentUser;
+
+    if (user == null) {
+      throw Exception("User tidak ditemukan.");
+    }
+
+    await user.sendEmailVerification();
+  }
+
+  /// Reload data user dari Firebase
+  Future<void> reloadUser() async {
+    await _auth.currentUser?.reload();
+  }
+
+  /// Status verifikasi email
+  bool get isEmailVerified => currentUser?.emailVerified ?? false;
+
   /// Logout
   Future<void> signOut() async {
     await _auth.signOut();
@@ -51,6 +70,17 @@ class AuthService {
         email: email.trim(),
         password: password,
       );
+    } on FirebaseAuthException catch (e) {
+      throw Exception(AuthException.getMessage(e));
+    } catch (_) {
+      throw Exception('Terjadi kesalahan. Silakan coba lagi.');
+    }
+  }
+
+  //methode lupa password
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email.trim());
     } on FirebaseAuthException catch (e) {
       throw Exception(AuthException.getMessage(e));
     } catch (_) {

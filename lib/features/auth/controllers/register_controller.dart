@@ -79,12 +79,15 @@ class RegisterController extends ChangeNotifier {
       );
 
       if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Registrasi berhasil. Silakan cek email Anda untuk melakukan verifikasi.",
+          ),
+        ),
+      );
 
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Registrasi berhasil")));
-
-      Navigator.pop(context);
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
     } catch (e) {
       if (!context.mounted) return;
 
