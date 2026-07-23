@@ -17,8 +17,7 @@ import 'features/welcome/pages/welcome_page.dart';
 
 import 'features/product/controllers/product_controller.dart';
 import 'features/product/pages/product_page.dart';
-
-import 'test_page.dart';
+import 'features/customer/pages/customer_page.dart';
 
 class CucikanApp extends StatelessWidget {
   const CucikanApp({super.key});
@@ -47,7 +46,7 @@ class CucikanApp extends StatelessWidget {
           '/forgot-password': (_) => const ForgotPasswordPage(),
           '/dashboard': (_) => const HomePage(),
           '/products': (_) => const ProductPage(),
-          '/test': (_) => const TestPage(),
+          '/customers': (_) => const CustomerPage(),
         },
       ),
     );

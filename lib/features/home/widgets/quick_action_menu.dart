@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../product/pages/product_page.dart';
 import 'quick_action_item.dart';
 
 class QuickActionMenu extends StatelessWidget {
@@ -18,7 +17,9 @@ class QuickActionMenu extends StatelessWidget {
         QuickActionItem(
           icon: Icons.people_alt_outlined,
           title: "Customer",
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, '/customers');
+          },
         ),
 
         QuickActionItem(
