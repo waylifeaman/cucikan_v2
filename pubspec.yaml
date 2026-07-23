@@ -36,6 +36,23 @@ dependencies:
   shared_preferences: ^2.5.3
   uuid: ^4.5.1
   provider: ^6.1.5
+
+  intl: ^0.20.2
+
+  flutter_svg:
+  cached_network_image:
+  # Picker
+  image_picker:
+
+  # Storage
+  firebase_storage:
+
+  # Printing
+  print_bluetooth_thermal:
+
+  # Share PDF
+  pdf:
+  printing:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8

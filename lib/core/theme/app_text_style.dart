@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 
@@ -10,67 +9,75 @@ class AppTextStyles {
   // Heading
   //==================================================
 
-  static final TextStyle heading1 = GoogleFonts.inter(
+  static const TextStyle heading1 = TextStyle(
     fontSize: 28,
     fontWeight: FontWeight.bold,
     color: AppColors.textPrimary,
+    decoration: TextDecoration.none,
   );
 
-  static final TextStyle heading2 = GoogleFonts.inter(
+  static const TextStyle heading2 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: AppColors.textPrimary,
+    decoration: TextDecoration.none,
   );
 
-  static final TextStyle heading3 = GoogleFonts.inter(
+  static const TextStyle heading3 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
+    decoration: TextDecoration.none,
   );
 
   //==================================================
   // Title
   //==================================================
 
-  static final TextStyle title = GoogleFonts.inter(
+  static const TextStyle title = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
+    decoration: TextDecoration.none,
   );
 
   //==================================================
   // Body
   //==================================================
 
-  static final TextStyle body = GoogleFonts.inter(
+  static const TextStyle body = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
     color: AppColors.textPrimary,
+    decoration: TextDecoration.none,
   );
 
-  static final TextStyle bodySmall = GoogleFonts.inter(
+  static const TextStyle bodySmall = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColors.textSecondary,
+    decoration: TextDecoration.none,
   );
 
   //==================================================
   // Caption
   //==================================================
 
-  static final TextStyle caption = GoogleFonts.inter(
+  static const TextStyle caption = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: AppColors.textHint,
+    decoration: TextDecoration.none,
   );
 
   //==================================================
   // Button
   //==================================================
 
-  static final TextStyle button = GoogleFonts.inter(
+  static const TextStyle button = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: Colors.white,
+    decoration: TextDecoration.none,
   );
 }

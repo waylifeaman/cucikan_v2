@@ -72,7 +72,7 @@ class LoginController extends ChangeNotifier {
 
       if (!context.mounted) return;
 
-      Navigator.pushReplacementNamed(context, '/dashboard');
+      Navigator.pushReplacementNamed(context, '/main');
     } catch (e) {
       if (!context.mounted) return;
 

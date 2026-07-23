@@ -33,6 +33,6 @@ class SplashController extends ChangeNotifier {
     }
 
     // Semua aman
-    return '/dashboard';
+    return '/main';
   }
 }
