@@ -68,12 +68,7 @@ class _CustomerView extends StatelessWidget {
                   itemBuilder: (_, index) {
                     final customer = customers[index];
 
-                    return CustomerTile(
-                      customer: customer,
-                      onDelete: () {
-                        controller.deleteCustomer(customer.id);
-                      },
-                    );
+                    return CustomerTile(customer: customer);
                   },
                 );
               },

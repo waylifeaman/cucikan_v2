@@ -18,6 +18,8 @@ import 'features/welcome/pages/welcome_page.dart';
 import 'features/product/controllers/product_controller.dart';
 import 'features/product/pages/product_page.dart';
 import 'features/customer/pages/customer_page.dart';
+import 'features/customer/models/customer_model.dart';
+import 'features/customer/pages/customer_detail_page.dart';
 
 class CucikanApp extends StatelessWidget {
   const CucikanApp({super.key});
@@ -47,6 +49,19 @@ class CucikanApp extends StatelessWidget {
           '/dashboard': (_) => const HomePage(),
           '/products': (_) => const ProductPage(),
           '/customers': (_) => const CustomerPage(),
+        },
+
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/customer-detail':
+              final customer = settings.arguments as CustomerModel;
+
+              return MaterialPageRoute(
+                builder: (_) => CustomerDetailPage(customer: customer),
+              );
+          }
+
+          return null;
         },
       ),
     );

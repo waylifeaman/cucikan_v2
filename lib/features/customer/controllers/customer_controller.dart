@@ -126,10 +126,19 @@ class CustomerController extends ChangeNotifier {
   // Delete Customer
   //==================================================
 
-  Future<void> deleteCustomer(String customerId) async {
-    await _customerService.deleteCustomer(customerId);
-  }
+  //==================================================
+  // Delete Customer
+  //==================================================
 
+  Future<void> deleteCustomer(String customerId) async {
+    setLoading(true);
+
+    try {
+      await _customerService.deleteCustomer(customerId);
+    } finally {
+      setLoading(false);
+    }
+  }
   //==================================================
   // Dispose
   //==================================================
